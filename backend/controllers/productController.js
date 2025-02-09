@@ -15,7 +15,7 @@ export const productCreate = async (req, res) => {
 
 export const getProducts = async (req, res) => {
     try {
-        console.log("hiiii");
+        // console.log("hiiii");
         let products = await Product.find().populate("seller", "shopName");
         if (products.length > 0) {
             res.send(products);
