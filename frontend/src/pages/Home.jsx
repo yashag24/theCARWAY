@@ -14,7 +14,7 @@ const Home = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("hello");
+   
     dispatch(getProducts());
   }, [dispatch]);
 

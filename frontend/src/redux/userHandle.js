@@ -25,7 +25,7 @@ import {
     specificProductSuccess,
     updateCurrentUser,
 } from './userSlice';
-console.log(process.env.REACT_APP_BASE_URL); 
+
 const REACT_APP_BASE_URL=`${process.env.REACT_APP_BASE_URL}/api`;
 
 export const authUser = (fields, role, mode) => async (dispatch) => {
@@ -134,9 +134,9 @@ export const getProductsbySeller = (id) => async (dispatch) => {
 export const getProducts = () => async (dispatch) => {
     dispatch(getRequest());
     try {
-        console.log(REACT_APP_BASE_URL); 
+       
         const result = await axios.get(`${REACT_APP_BASE_URL}/getProducts`);
-        console.log("yash bhai",result);
+        // console.log(result);
         if (result.data.message) {
             dispatch(getProductsFailed(result.data.message));
         }
