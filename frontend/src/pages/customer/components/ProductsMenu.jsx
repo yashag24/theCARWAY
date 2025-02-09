@@ -17,9 +17,10 @@ const ProductsMenu = ({ dropName }) => {
 
     const location = useLocation();
 
-    const { productData } = useSelector(state => state.user);
+    const { productData } =useSelector(state => state.user);
 
     React.useEffect(() => {
+        console.log("hello");
         dispatch(getProducts());
     }, [dispatch])
 

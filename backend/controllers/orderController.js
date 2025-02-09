@@ -1,6 +1,6 @@
-const Order = require('../models/orderSchema.js');
+import Order from '../models/orderSchema.js';
 
-const newOrder = async (req, res) => {
+export const newOrder = async (req, res) => {
     try {
 
         const {
@@ -29,7 +29,7 @@ const newOrder = async (req, res) => {
     }
 }
 
-const getOrderedProductsByCustomer = async (req, res) => {
+export const getOrderedProductsByCustomer = async (req, res) => {
     try {
         let orders = await Order.find({ buyer: req.params.id });
 
@@ -47,7 +47,7 @@ const getOrderedProductsByCustomer = async (req, res) => {
     }
 };
 
-const getOrderedProductsBySeller = async (req, res) => {
+export const getOrderedProductsBySeller = async (req, res) => {
     try {
         const sellerId = req.params.id;
 
@@ -78,8 +78,3 @@ const getOrderedProductsBySeller = async (req, res) => {
     }
 };
 
-module.exports = {
-    newOrder,
-    getOrderedProductsByCustomer,
-    getOrderedProductsBySeller
-};

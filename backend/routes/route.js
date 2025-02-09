@@ -1,12 +1,12 @@
-const router = require('express').Router();
-const authMiddleware = require('../middleware/authMiddleware.js');
+import express from 'express';
+const router=express.Router();
 
-const {
+import {
     sellerRegister,
     sellerLogIn
-} = require('../controllers/sellerController.js');
+} from '../controllers/sellerController.js';
 
-const {
+import {
     productCreate,
     getProducts,
     getProductDetail,
@@ -22,20 +22,20 @@ const {
     addReview,
     getInterestedCustomers,
     getAddedToCartProducts,
-} = require('../controllers/productController.js');
+} from '../controllers/productController.js';
 
-const {
+import {
     customerRegister,
     customerLogIn,
     getCartDetail,
     cartUpdate
-} = require('../controllers/customerController.js');
+} from '../controllers/customerController.js';
 
-const {
+import {
     newOrder,
     getOrderedProductsByCustomer,
     getOrderedProductsBySeller
-} = require('../controllers/orderController.js');
+} from '../controllers/orderController.js';
 
 
 // Seller
@@ -73,4 +73,4 @@ router.post('/newOrder', newOrder);
 router.get('/getOrderedProductsByCustomer/:id', getOrderedProductsByCustomer);
 router.get('/getOrderedProductsBySeller/:id', getOrderedProductsBySeller);
 
-module.exports = router;
+export default router;

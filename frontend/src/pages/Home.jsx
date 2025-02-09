@@ -13,14 +13,15 @@ const Home = () => {
     'https://rukminim1.flixcart.com/flap/464/708/image/1f03e99f6dc9f7a6.jpg?q=70';
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("hello");
+    dispatch(getProducts());
+  }, [dispatch]);
+
 
   const { productData, responseProducts, error } = useSelector((state) => state.user);
 
   const [showNetworkError, setShowNetworkError] = useState(false);
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
 
   useEffect(() => {
     if (error) {

@@ -1,7 +1,7 @@
-const Product = require("../models/productSchema");
-const Customer = require("../models/customerSchema");
+import Product from "../models/productSchema.js";
+import Customer from '../models/customerSchema.js';
 
-const productCreate = async (req, res) => {
+export const productCreate = async (req, res) => {
     try {
         const product = new Product(req.body)
 
@@ -13,8 +13,9 @@ const productCreate = async (req, res) => {
     }
 };
 
-const getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
     try {
+        console.log("hiiii");
         let products = await Product.find().populate("seller", "shopName");
         if (products.length > 0) {
             res.send(products);
@@ -26,7 +27,7 @@ const getProducts = async (req, res) => {
     }
 };
 
-const getSellerProducts = async (req, res) => {
+export const getSellerProducts = async (req, res) => {
     try {
         let products = await Product.find({ seller: req.params.id })
         if (products.length > 0) {
@@ -39,7 +40,7 @@ const getSellerProducts = async (req, res) => {
     }
 };
 
-const getProductDetail = async (req, res) => {
+export const getProductDetail = async (req, res) => {
     try {
         let product = await Product.findById(req.params.id)
             .populate("seller", "shopName")
@@ -60,7 +61,7 @@ const getProductDetail = async (req, res) => {
     }
 }
 
-const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
     try {
         let result = await Product.findByIdAndUpdate(req.params.id,
             { $set: req.body },
@@ -72,7 +73,7 @@ const updateProduct = async (req, res) => {
     }
 }
 
-const addReview = async (req, res) => {
+export const addReview = async (req, res) => {
     try {
         const { rating, comment, reviewer } = req.body;
         const productId = req.params.id;
@@ -100,7 +101,7 @@ const addReview = async (req, res) => {
     }
 };
 
-const searchProduct = async (req, res) => {
+export const searchProduct = async (req, res) => {
     try {
         const key = req.params.key;
 
@@ -122,7 +123,7 @@ const searchProduct = async (req, res) => {
     }
 };
 
-const searchProductbyCategory = async (req, res) => {
+export const searchProductbyCategory = async (req, res) => {
     try {
         const key = req.params.key;
 
@@ -142,7 +143,7 @@ const searchProductbyCategory = async (req, res) => {
     }
 };
 
-const searchProductbySubCategory = async (req, res) => {
+export const searchProductbySubCategory = async (req, res) => {
     try {
         const key = req.params.key;
 
@@ -162,7 +163,7 @@ const searchProductbySubCategory = async (req, res) => {
     }
 };
 
-const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
 
@@ -177,7 +178,7 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-const deleteProducts = async (req, res) => {
+export const deleteProducts = async (req, res) => {
     try {
         const deletionResult = await Product.deleteMany({ seller: req.params.id });
 
@@ -202,7 +203,7 @@ const deleteProducts = async (req, res) => {
 };
 
 
-const deleteProductReview = async (req, res) => {
+export const deleteProductReview = async (req, res) => {
     try {
         const { reviewId } = req.body;
         const productId = req.params.id;
@@ -221,7 +222,7 @@ const deleteProductReview = async (req, res) => {
     }
 };
 
-const deleteAllProductReviews = async (req, res) => {
+export const deleteAllProductReviews = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         product.reviews = [];
@@ -234,7 +235,7 @@ const deleteAllProductReviews = async (req, res) => {
     }
 };
 
-const getInterestedCustomers = async (req, res) => {
+export const getInterestedCustomers = async (req, res) => {
     try {
         const productId = req.params.id;
 
@@ -264,7 +265,7 @@ const getInterestedCustomers = async (req, res) => {
     }
 };
 
-const getAddedToCartProducts = async (req, res) => {
+export const getAddedToCartProducts = async (req, res) => {
     try {
         const sellerId = req.params.id;
 
@@ -305,22 +306,4 @@ const getAddedToCartProducts = async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-};
-
-module.exports = {
-    productCreate,
-    getProducts,
-    getSellerProducts,
-    getProductDetail,
-    updateProduct,
-    addReview,
-    searchProduct,
-    searchProductbyCategory,
-    searchProductbySubCategory,
-    deleteProduct,
-    deleteProducts,
-    deleteProductReview,
-    deleteAllProductReviews,
-    getInterestedCustomers,
-    getAddedToCartProducts,
 };

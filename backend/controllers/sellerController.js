@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt');
-const Seller = require('../models/sellerSchema.js');
-const { createNewToken } = require('../utils/token.js');
+import bcrypt from "bcrypt";
+import Seller from '../models/sellerSchema.js';
+import  createNewToken from '../utils/token.js';
 
-const sellerRegister = async (req, res) => {
+export const sellerRegister = async (req, res) => {
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -39,7 +39,7 @@ const sellerRegister = async (req, res) => {
     }
 };
 
-const sellerLogIn = async (req, res) => {
+export const sellerLogIn = async (req, res) => {
     if (req.body.email && req.body.password) {
         let seller = await Seller.findOne({ email: req.body.email });
         if (seller) {
@@ -65,5 +65,3 @@ const sellerLogIn = async (req, res) => {
         res.send({ message: "Email and password are required" });
     }
 };
-
-module.exports = { sellerRegister, sellerLogIn };
