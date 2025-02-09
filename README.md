@@ -13,9 +13,20 @@ The Carway is a **second-hand car accessories buying/selling portal** that allow
 ## Live Demo
 🚀 **Working Link:** [ theCARWAY ](https://thecarway.onrender.com)
 
-## Tech Stack
-- **Frontend:** React.js  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB  
-- **Deployment:** Render  
+## Tech Stack 🛠️  
 
+### **Frontend**  
+- **React.js** – Component-based UI  
+- **Redux Toolkit** – State management  
+- **React Router** – Navigation  
+- **Axios** – API requests  
+
+### **Backend**  
+- **Node.js & Express.js** – REST API  
+- **MongoDB & Mongoose** – Database  
+- **JWT & Bcrypt.js** – Authentication  
+
+### **Deployment & Tools**  
+- **Render** – Hosting  
+- **GitHub** – Version control  
+- **dotenv** – Environment variables  
